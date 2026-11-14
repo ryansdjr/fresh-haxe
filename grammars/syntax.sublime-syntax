@@ -1,0 +1,47 @@
+%YAML 1.2
+---
+name: Haxe
+file_extensions:
+  - hx
+scope: source.haxe
+
+contexts:
+  main:
+    - match: '//.*$'
+      scope: comment.line.double-slash.haxe
+    - match: '/\*'
+      scope: comment.block.haxe
+      push:
+        - meta_scope: comment.block.haxe
+        - match: '\*/'
+          pop: true
+    - match: '"'
+      scope: punctuation.definition.string.begin.haxe
+      push:
+        - meta_scope: string.quoted.double.haxe
+        - match: '\\.'
+          scope: constant.character.escape.haxe
+        - match: '"'
+          scope: punctuation.definition.string.end.haxe
+          pop: true
+    - match: \x27
+      scope: punctuation.definition.string.begin.haxe
+      push:
+        - meta_scope: string.quoted.single.haxe
+        - match: '\\.'
+          scope: constant.character.escape.haxe
+        - match: \x27
+          scope: punctuation.definition.string.end.haxe
+          pop: true
+    - match: '\b(package|import|using|class|interface|enum|typedef|abstract|extends|implements|public|private|static|inline|override|dynamic|extern|final|macro|function|var|new|if|else|switch|case|default|for|in|while|do|try|catch|throw|return|break|continue|cast|untyped|this|super|null|true|false)\b'
+      scope: keyword.control.haxe
+    - match: '\b(Int|Float|Bool|String|Void|Dynamic|Array|Map|Null|Class|Enum)\b'
+      scope: storage.type.haxe
+    - match: '\b([A-Z][A-Za-z0-9_]*)\b'
+      scope: entity.name.type.haxe
+    - match: '\b(0x[0-9a-fA-F]+|[0-9]+(\.[0-9]+)?)\b'
+      scope: constant.numeric.haxe
+    - match: '#(if|elseif|else|end|error)\b'
+      scope: keyword.control.directive.haxe
+    - match: '@:?[a-zA-Z0-9_]+'
+      scope: storage.modifier.metadata.haxe

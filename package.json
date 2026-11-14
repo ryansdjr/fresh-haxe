@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sinelaw/fresh/main/crates/fresh-editor/plugins/schemas/package.schema.json",
+  "name": "haxe",
+  "version": "0.1.0",
+  "description": "Syntax highlighting for Haxe (.hx) in Fresh IDE",
+  "type": "language",
+  "author": "ryansdjr",
+  "license": "MIT",
+  "fresh": {
+    "grammar": {
+      "file": "grammars/syntax.sublime-syntax",
+      "extensions": ["hx"]
+    },
+    "language": {
+      "commentPrefix": "//",
+      "tabSize": 4,
+      "autoIndent": true
+    }
+  }
+}
